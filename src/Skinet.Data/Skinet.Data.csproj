@@ -1,5 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
+    <None Include="Seed\Data\**" CopyToOutputDirectory="PreserveNewest" />
     <ProjectReference Include="..\Skinet.Entities\Skinet.Entities.csproj" />
     <ProjectReference Include="..\Skinet.Infra\Skinet.Infra.csproj" />
   </ItemGroup>

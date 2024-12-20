@@ -1,5 +1,5 @@
+using Skinet.Application.Extensions;
 using Skinet.Data.Extensions;
-using Skinet.Data.Seed;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddStoreContext(builder.Configuration);
+builder.Services.AddRepository();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
