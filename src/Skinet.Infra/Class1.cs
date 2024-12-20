@@ -1,6 +1,3 @@
 ﻿namespace Skinet.Infra;
 
-public class Class1
-{
-
-}
+public class Class1 { }
