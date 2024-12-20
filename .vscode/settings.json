@@ -1,0 +1,27 @@
+{
+  "files.exclude": {
+    "**/bin": true,
+    "**/node_modules": true,
+    "**/obj": true
+  },
+  "files.autoSave": "afterDelay",
+  "editor.formatOnSave": true,
+  "files.autoSaveWhenNoErrors": true,
+  "files.autoSaveWorkspaceFilesOnly": true,
+  "files.watcherExclude": {
+    "**/bin": true,
+    "**/node_modules": true,
+    "**/obj": true
+  },
+  "search.exclude": {
+    "**/bin": true,
+    "**/obj": true
+  },
+  "workbench.colorTheme": "GitHub Dark Default",
+  "workbench.iconTheme": "vscode-icons",
+  "[csharp]": {
+    "editor.defaultFormatter": "csharpier.csharpier-vscode"
+  },
+  "git.autofetch": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
+}
