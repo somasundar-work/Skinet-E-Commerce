@@ -5,10 +5,10 @@ namespace Skinet.Application.Specifications;
 
 public class ProductSpecification : BaseSpecification<Product>
 {
-    public ProductSpecification(string? brand, string? type, string? sort)
+    public ProductSpecification(string? brand, string? category, string? sort)
         : base(p =>
             (string.IsNullOrEmpty(brand) || p.Brand == brand)
-            && (string.IsNullOrEmpty(type) || p.Category == type)
+            && (string.IsNullOrEmpty(category) || p.Category == category)
         )
     {
         switch (sort)

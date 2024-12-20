@@ -12,11 +12,11 @@ public class ProductsController(IGenericRepository<Product> repo) : ControllerBa
     [HttpGet]
     public async Task<ActionResult<IReadOnlyList<Product>>> GetProducts(
         string? brand,
-        string? type,
+        string? category,
         string? sort
     )
     {
-        var spec = new ProductSpecification(brand, type, sort);
+        var spec = new ProductSpecification(brand, category, sort);
         var products = await repo.ListAsync(spec);
         return Ok(products);
     }
@@ -87,12 +87,12 @@ public class ProductsController(IGenericRepository<Product> repo) : ControllerBa
         return Ok(brands);
     }
 
-    [HttpGet("types")]
-    public async Task<ActionResult<IReadOnlyList<string>>> GetTypes()
+    [HttpGet("categories")]
+    public async Task<ActionResult<IReadOnlyList<string>>> GetCategories()
     {
-        var spec = new TypeListSpecification();
-        var types = await repo.ListAsync(spec);
-        return Ok(types);
+        var spec = new CategoryListSpecification();
+        var categories = await repo.ListAsync(spec);
+        return Ok(categories);
     }
 
     private bool ProductExists(int id)
