@@ -23,5 +23,9 @@
     "editor.defaultFormatter": "csharpier.csharpier-vscode"
   },
   "git.autofetch": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "terminal.integrated.cwd": "${workspaceFolder}",
+  "terminal.integrated.env.windows": {
+    "PATH": "${env:USERPROFILE}\\AppData\\Roaming\\npm;${env:PATH}"
+  }
 }
