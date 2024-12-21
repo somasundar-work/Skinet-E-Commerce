@@ -23,3 +23,22 @@ To use CSharpier, follow these steps:
    This command will format all the C# files in the current directory and its subdirectories.
 
 By integrating CSharpier into your workflow, you can ensure that your code remains clean and consistent throughout the development process.
+
+## Disable Angular CLI Analytics
+
+This command disables the Angular CLI analytics feature globally for all projects on your machine.
+By running this command, you ensure that no usage data is sent to the Angular team, enhancing your privacy.
+
+### Command
+
+```sh
+ng config -g cli.analytics false
+```
+
+### Explanation
+
+- `ng config`: This is the Angular CLI command used to set or retrieve configuration values.
+- `-g`: This flag indicates that the configuration change should be applied globally, affecting all Angular projects on your machine.
+- `cli.analytics`: This is the specific configuration key that controls the analytics feature.
+- `false`: This value disables the analytics feature.
+  \*/
