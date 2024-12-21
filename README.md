@@ -26,8 +26,7 @@ By integrating CSharpier into your workflow, you can ensure that your code remai
 
 ## Disable Angular CLI Analytics
 
-This command disables the Angular CLI analytics feature globally for all projects on your machine.
-By running this command, you ensure that no usage data is sent to the Angular team, enhancing your privacy.
+This command disables the Angular CLI analytics feature globally for all projects on your machine. By running this command, you ensure that no usage data is sent to the Angular team, enhancing your privacy.
 
 ### Command
 
@@ -41,7 +40,6 @@ ng config -g cli.analytics false
 - `-g`: This flag indicates that the configuration change should be applied globally, affecting all Angular projects on your machine.
 - `cli.analytics`: This is the specific configuration key that controls the analytics feature.
 - `false`: This value disables the analytics feature.
-  \*/
 
 # Client
 
@@ -103,7 +101,7 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
 
-# mkcert 
+# mkcert
 
 [Github URL](https://github.com/FiloSottile/mkcert)
 
@@ -133,3 +131,46 @@ The certificate is at "./example.com+5.pem" and the key at "./example.com+5-key.
 Using certificates from real certificate authorities (CAs) for development can be dangerous or impossible (for hosts like `example.test`, `localhost` or `127.0.0.1`), but self-signed certificates cause trust errors. Managing your own CA is the best solution, but usually involves arcane commands, specialized knowledge and manual steps.
 
 mkcert automatically creates and installs a local CA in the system root store, and generates locally-trusted certificates. mkcert does not automatically configure servers to use the certificates, though, that's up to you.
+
+## Configuring SSL in an Angular Application
+
+Follow these steps to configure SSL in your Angular application:
+
+1. **Generate SSL Certificates:**
+
+   - Use a tool like `mkcert` to generate a self-signed certificate.
+   - Example command:
+     ```sh
+     mkcert -install
+     mkcert localhost
+     ```
+   - This will generate `localhost.pem` and `localhost-key.pem` files.
+
+2. **Update Angular Configuration:**
+
+   - Open `angular.json` and locate the `serve` options for your project.
+   - Add the following SSL configuration:
+     ```json
+     "options": {
+       "ssl": true,
+       "sslKey": "path/to/localhost-key.pem",
+       "sslCert": "path/to/localhost.pem"
+     }
+     ```
+
+3. **Serve the Application with SSL:**
+
+   - Use the Angular CLI to serve your application with SSL enabled.
+   - Example command:
+     ```sh
+     ng serve --ssl --ssl-key path/to/localhost-key.pem --ssl-cert path/to/localhost.pem
+     ```
+
+4. **Access the Application:**
+   - Open your browser and navigate to `https://localhost:4200`.
+   - You should see your Angular application served over HTTPS.
+
+## Notes
+
+- For production environments, use certificates issued by a trusted Certificate Authority (CA).
+- Ensure that your server configuration (e.g., Nginx, Apache) is also set up to handle SSL if deploying to a web server.
