@@ -6,25 +6,13 @@ using Skinet.Entities.Product;
 
 namespace Skinet.API.Controllers;
 
-[ApiController]
-[Route("api/[controller]")]
-public class ProductsController(IGenericRepository<Product> repo) : ControllerBase
+public class ProductsController(IGenericRepository<Product> repo) : BaseApiController
 {
     [HttpGet]
-    public async Task<ActionResult<IReadOnlyList<Product>>> GetProducts(
-        [FromQuery] ProductSpecParams specParams
-    )
+    public async Task<IActionResult> GetProducts([FromQuery] ProductSpecParams specParams)
     {
         var spec = new ProductSpecification(specParams);
-        var products = await repo.ListAsync(spec);
-        var Count = await repo.CountAsync(spec);
-        var pagination = new Pagination<Product>(
-            specParams.PageIndex,
-            specParams.PageSize,
-            Count,
-            products
-        );
-        return Ok(pagination);
+        return await CreatePagedResult(repo, spec, specParams.PageIndex, specParams.PageSize);
     }
 
     [HttpGet("{id:int}")] // api/products/2
