@@ -5,13 +5,14 @@ namespace Skinet.Application.Specifications;
 
 public class ProductSpecification : BaseSpecification<Product>
 {
-    public ProductSpecification(string? brand, string? category, string? sort)
+    public ProductSpecification(ProductSpecParams specParams)
         : base(p =>
-            (string.IsNullOrEmpty(brand) || p.Brand == brand)
-            && (string.IsNullOrEmpty(category) || p.Category == category)
+            (specParams.Brands.Count == 0 || specParams.Brands.Contains(p.Brand))
+            && (specParams.Categories.Count == 0 || specParams.Categories.Contains(p.Category))
         )
     {
-        switch (sort)
+        ApplyPaging(specParams.PageSize * (specParams.PageIndex - 1), specParams.PageSize);
+        switch (specParams.Sort)
         {
             case "priceAsc":
                 AddOrderBy(p => p.Price);

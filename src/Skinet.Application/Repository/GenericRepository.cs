@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Polly;
 using Skinet.Application.Evaluator;
 using Skinet.Application.Interfaces;
 using Skinet.Data.Context;
@@ -16,7 +17,9 @@ public class GenericRepository<T>(StoreContext storeContext) : IGenericRepositor
 
     public async Task<int> CountAsync(ISpecification<T> spec)
     {
-        return await ApplySpecification(spec).CountAsync();
+        var query = storeContext.Set<T>().AsQueryable();
+        query = spec.ApplyCriteria(query);
+        return await query.CountAsync();
     }
 
     public void Delete(T entity)

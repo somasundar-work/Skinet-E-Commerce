@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Skinet.API.RequestHelpers;
 using Skinet.Application.Interfaces;
 using Skinet.Application.Specifications;
 using Skinet.Entities.Product;
@@ -11,14 +12,19 @@ public class ProductsController(IGenericRepository<Product> repo) : ControllerBa
 {
     [HttpGet]
     public async Task<ActionResult<IReadOnlyList<Product>>> GetProducts(
-        string? brand,
-        string? category,
-        string? sort
+        [FromQuery] ProductSpecParams specParams
     )
     {
-        var spec = new ProductSpecification(brand, category, sort);
+        var spec = new ProductSpecification(specParams);
         var products = await repo.ListAsync(spec);
-        return Ok(products);
+        var Count = await repo.CountAsync(spec);
+        var pagination = new Pagination<Product>(
+            specParams.PageIndex,
+            specParams.PageSize,
+            Count,
+            products
+        );
+        return Ok(pagination);
     }
 
     [HttpGet("{id:int}")] // api/products/2
