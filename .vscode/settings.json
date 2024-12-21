@@ -27,5 +27,6 @@
   "terminal.integrated.cwd": "${workspaceFolder}",
   "terminal.integrated.env.windows": {
     "PATH": "${env:USERPROFILE}\\AppData\\Roaming\\npm;${env:PATH}"
-  }
+  },
+  "editor.linkedEditing": true
 }
