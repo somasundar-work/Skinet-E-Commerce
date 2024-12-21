@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using Skinet.Entities.Product;
+using Skinet.Application.Dtos;
 
 namespace Skinet.API.Controllers;
 
@@ -32,8 +32,8 @@ public class BuggyController : BaseApiController
     }
 
     [HttpPost("validation-error")]
-    public ActionResult GetValidationError(Product product)
+    public ActionResult GetValidationError(CreateProductDto product)
     {
-        return Ok();
+        return Ok(product);
     }
 }
