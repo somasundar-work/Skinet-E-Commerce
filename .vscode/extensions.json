@@ -8,6 +8,8 @@
     "csharpier.csharpier-vscode",
     "patcx.vscode-nuget-gallery",
     "esbenp.prettier-vscode",
-    "vscode-icons-team.vscode-icons"
+    "vscode-icons-team.vscode-icons",
+    "bradlc.vscode-tailwindcss",
+    "formulahendry.auto-rename-tag"
   ]
 }
